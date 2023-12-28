@@ -9,6 +9,8 @@ const Joi             = require('joi');
 const expenseSchema   = require('../schemas');
 const flash           = require('connect-flash');
 const {isLoggedIn}      = require('../middleware');
+const sumField       = require('../utils/calculator');
+
 const User = require('../models/User');
 const validateExpense = (req, res, next) => {
     const {item, price, date, category, mode, shop, note} = req.body;
@@ -20,6 +22,11 @@ const validateExpense = (req, res, next) => {
         next();
     }
 }
+
+router.get('/home', async (req, res) => {
+    //const expenses = await Expense.find().exec();
+    res.render('index', {total: (req.user) ?  sumField(await Expense.find({user: req.user._id}).exec(), 'price') : 0})
+})
 
 router.get('/index', isLoggedIn, catchAsync(async (req, res) => {
     console.log(req.user);

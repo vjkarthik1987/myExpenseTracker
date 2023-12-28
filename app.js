@@ -93,10 +93,16 @@ app.use('/expenses', expenses);
 app.use('/users', users);
 
 //Main Home Route
-app.get('/', async (req, res) => {
-    //const expenses = await Expense.find().exec();
-    res.render('index', {total: (req.user) ?  sumField(await Expense.find({user: req.user._id}).exec(), 'price') : 0})
+app.get('/', (req, res) => {
+    res.render('home');
 })
+
+// app.get('/index', async (req, res) => {
+//     //const expenses = await Expense.find().exec();
+//     res.render('index', {total: (req.user) ?  sumField(await Expense.find({user: req.user._id}).exec(), 'price') : 0})
+// })
+
+
 
 //Route for pages that are not found
 app.all('*', (req, res, next) => {

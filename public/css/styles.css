@@ -1,7 +1,63 @@
+/* Default components */
+
 input {
     margin-bottom: 3px;
 }
 
 body {
     background-color: #F0ECE5;
+}
+
+/* Defined classes */
+.homeHero{
+    height: 100vh;
+    background-image: url('/img/homeHero_freedom.jpg');
+    background-size: cover;
+    padding: 0 auto;
+}
+
+.mainComponent {
+    margin: auto auto;
+    min-height: 25vh;
+    min-width: 20vh;
+    max-width: 50vh;
+    background-color: rgb(255,255,255,0.5);
+    padding: 15px;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.mainComponent a {
+    background-color: blue;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    width: 100px;
+    text-align: center;
+}
+
+.formHolder {
+    background-color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.formHolder input {
+    border: 0px;
+    border-bottom: 1px chocolate solid;
+    border-radius: 0px;
+    margin-bottom: 20px;
+    padding-left: 0px;
+}
+
+/* Bootstrap classes */
+.btn {
+    border-radius: 0px;
+    width: 100%;
 }

@@ -1,14 +1,17 @@
 <%- include('../partials/header') %>
 <%- include('../partials/navbar') %>
-<div class="container">
-    <%- include('../partials/flash') %>
-    <h2>Register</h2>
-    <form action="/users/register" method="POST" novalidate class="needs-validation">
-        <input type="text" id="username" name="username" placeholder="Enter your username" required class="form-control">
-        <input type="email" id="email" name="email" placeholder="Enter your email" required class="form-control">
-        <input type="password" id="password" name="password" placeholder="Enter your password" required class="form-control">
-        <button type="submit" class="btn btn-success">Register</button>
-    </form>
+<div class="row px-4 mx-0">
+    <div class="col-lg-6 col-md-9 col-sm-11 mx-auto mt-5 formHolder">
+        <%- include('../partials/flash') %>
+        <h2>Register</h2>
+        <form action="/users/register" method="POST" novalidate class="needs-validation">
+            <input type="text" id="username" name="username" placeholder="Enter your username" required class="form-control">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required class="form-control">
+            <input type="password" id="password" name="password" placeholder="Enter your password" required class="form-control">
+            <button type="submit" class="btn btn-success">Register</button>
+        </form>
+    </div>
 </div>
+
 
 <%- include('../partials/footer') %>
