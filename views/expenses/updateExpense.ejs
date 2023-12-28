@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<div class="container">
+    <h2>Add an Expense</h2>
+    <form action="/expenses/<%= expense._id %>/update?_method=PATCH" method="POST" novalidate class="needs-validation">
+        <input type="text" id="item" name="item"  required value="<%= expense.item %>">
+        <input type="number" id="price" name="price"  required value="<%= expense.price %>">
+        <input type="date" id="date" name="date" required value="<%= expense.date %>">
+        <select id="category" name="category">
+            <% for (let category of categories) { %>
+                <% let result = (expense.category === category) ? 'selected' : '' %>
+                <option value="<%= category %>" <%= result %>><%= category %></option>
+            <% } %>
+        </select>
+        <select id="mode" name="mode">
+            <% for (let mode of modes) { %>
+                <% let result = (expense.mode === mode) ? 'selected' : '' %>
+                <option value="<%= mode %>" <%= result %>><%= mode %></option>
+            <% } %>
+        </select>
+        <input type="text" id="shop" name="shop" required placeholder="Enter your shop" value="<%= expense.shop %>">
+        <input type="text" id="note" name="note" required placeholder="Enter notes" value="<%= expense.note %>">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

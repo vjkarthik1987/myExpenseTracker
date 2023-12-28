@@ -1,0 +1,11 @@
+<%- include('./partials/header') %>
+<%- include('./partials/navbar') %>
+<div class="container">
+    <%- include('./partials/flash') %>
+    <h1>My Expense Tracker</h1>
+    <a href="/expenses/index">All Expenses</a>
+    <a href="/expenses/add">Add Expense</a>
+    <p>The total expense so far is: Rs.<%= total %></p>
+</div>
+<%- include('./partials/footer') %>
+

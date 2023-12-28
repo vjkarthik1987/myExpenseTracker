@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="container">
+    <%- include('../partials/flash') %>
+    <h1>All Expenses</h1>
+    <ul>
+        <% for (let expense of expenses){ %>
+            <a href="/expenses/<%= expense._id %>"><li><%= expense.item %> : Rs.<%= expense.price %></li></a>
+        <% } %>
+    </ul>
+</div>
+
+<%- include('../partials/footer') %>

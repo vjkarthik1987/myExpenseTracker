@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<div class="container">
+    <h1><%= foundExpense.item %></h1>
+    <h3>Price: Rs.<%= foundExpense.price %></h3>
+    <p><i><%= foundExpense.date.toLocaleDateString() %></i></p>
+    <h4>Details:</h4>
+    <p>Owner: <%= user.username %></p>
+    <p><%= foundExpense.category %>, <%= foundExpense.mode %>, <%= foundExpense.shop %>, <%= foundExpense.note %></p>
+    <a href="/expenses/<%= foundExpense._id %>/update">Update Expense</a>
+    <a href="/expenses/index">All Expenses</a>
+    <form action="/expenses/<%= foundExpense._id %>/delete?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+
+
+<%- include('../partials/footer') %>
