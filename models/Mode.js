@@ -1,6 +1,6 @@
 module.exports = [
-    'Credit Card',
-    'Net Banking',
+    'Credit',
+    'Account',
     'Cash',
     'Wallet'
 ]

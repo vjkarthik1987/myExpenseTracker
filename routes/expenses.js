@@ -24,8 +24,24 @@ const validateExpense = (req, res, next) => {
 }
 
 router.get('/home', async (req, res) => {
-    //const expenses = await Expense.find().exec();
-    res.render('index', {total: (req.user) ?  sumField(await Expense.find({user: req.user._id}).exec(), 'price') : 0})
+    const expenses = await Expense.find({user: req.user._id}).exec();
+    let details = {
+        year:0,
+        month:0,
+        yesterday:0,
+        today:0,
+        credit:0,
+        cash:0,
+        account:0,
+        wallet:0
+    };
+    const dateToday = new Date();
+    for (let expense of expenses) {
+        if (expense.date.getFullYear() ==  dateToday.getFullYear()){
+            details.year = details.year + expense.price;
+        }
+    }
+    res.render('index', {total: (req.user) ?  sumField(expenses, 'price') : 0, details:details})
 })
 
 router.get('/index', isLoggedIn, catchAsync(async (req, res) => {

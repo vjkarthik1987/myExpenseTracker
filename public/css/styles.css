@@ -56,6 +56,15 @@ body {
     padding-left: 0px;
 }
 
+.dashboard_box{
+    background-color: white ;
+    margin: 2px 5px;
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
 /* Bootstrap classes */
 .btn {
     border-radius: 0px;
