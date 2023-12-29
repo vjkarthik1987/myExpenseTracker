@@ -68,6 +68,7 @@ router.post('/', validateExpense, isLoggedIn, catchAsync(async (req, res, next) 
     res.redirect('/expenses/index');
 }))
 
+
 router.get('/:id/update', isLoggedIn, catchAsync(async (req, res) => {
     const {id} = req.params;
     const foundExpense = await Expense.findById(id);
