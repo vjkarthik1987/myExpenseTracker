@@ -1,25 +1,31 @@
 <%- include('../partials/header') %>
 <%- include('../partials/navbar') %>
 <div class="container">
-    <h2>Add an Expense</h2>
-    <form action="/expenses" method="POST" novalidate class="needs-validation">
-        <input type="text" id="item" name="item" placeholder="Enter your name" required class="form-control">
-        <input type="number" id="price" name="price" placeholder="Enter the price" required class="form-control">
-        <input type="date" id="date" name="date" placeholder="Enter the date" required class="form-control">
-        <select id="category" name="category">
-            <% for (let category of categories) { %>
-                <option value="<%= category %>"><%= category %></option>
-            <% } %>
-        </select>
-        <select id="mode" name="mode">
-            <% for (let mode of modes) { %>
-                <option value="<%= mode %>"><%= mode %></option>
-            <% } %>
-        </select>
-        <input type="text" id="shop" name="shop" placeholder="Enter your shop" required class="form-control">
-        <input type="text" id="note" name="note" placeholder="Enter notes" required class="form-control">
-        <button type="submit" class="btn btn-success">Add Expense</button>
-    </form>
+    <div class="col col-lg-4 col-md-6 col-sm-10 mx-auto mt-5 formHolder">
+        <h2>Add an Expense</h2>
+        <form action="/expenses" method="POST" novalidate class="needs-validation">
+            <input type="text" id="item" name="item" placeholder="Enter your name" required class="form-control">
+            <input type="number" id="price" name="price" placeholder="Enter the price" required class="form-control">
+            <input type="date" id="date" name="date" placeholder="Enter the date" required class="form-control">
+            <div class="col selectFields d-flex flex-row justify-content-between">
+                <select id="category" name="category" class="col-5">
+                    <% for (let category of categories) { %>
+                        <option value="<%= category %>"><%= category %></option>
+                    <% } %>
+                </select>
+                <select id="mode" name="mode" class="col-5">
+                    <% for (let mode of modes) { %>
+                        <option value="<%= mode %>"><%= mode %></option>
+                    <% } %>
+                </select>
+            </div>
+            
+            <input type="text" id="shop" name="shop" placeholder="Enter your shop" required class="form-control">
+            <input type="text" id="note" name="note" placeholder="Enter notes" required class="form-control">
+            <button type="submit" class="btn btn-success">Add Expense</button>
+        </form>
+    </div>
+    
 </div>
 
 <%- include('../partials/footer') %>

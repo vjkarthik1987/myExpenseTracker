@@ -1,17 +1,22 @@
 <%- include('../partials/header') %>
 <%- include('../partials/navbar') %>
 <div class="container">
-    <h1><%= foundExpense.item %></h1>
-    <h3>Price: Rs.<%= foundExpense.price %></h3>
-    <p><i><%= foundExpense.date.toLocaleDateString() %></i></p>
-    <h4>Details:</h4>
-    <p>Owner: <%= user.username %></p>
-    <p><%= foundExpense.category %>, <%= foundExpense.mode %>, <%= foundExpense.shop %>, <%= foundExpense.note %></p>
-    <a href="/expenses/<%= foundExpense._id %>/update">Update Expense</a>
-    <a href="/expenses/index">All Expenses</a>
-    <form action="/expenses/<%= foundExpense._id %>/delete?_method=DELETE" method="POST">
-        <button type="submit">Delete</button>
-    </form>
+    <div class="col col-lg-5 col-md-6 col-sm-10 mx-auto mt-5 formHolder">
+        <h2 class="mb-2">Item: <%= foundExpense.item %></h2>
+        <h4 class="mb-3 lead">Price: Rs.<%= foundExpense.price %></h4>
+        <p class="mb-1"><i>Brought on <%= foundExpense.date.toLocaleDateString() %></i></p>
+        <p class="mb-1">Brought from <%= foundExpense.shop %></p>
+        <p class="mb-1">Mode of payment was <%= foundExpense.mode %></p>
+        <p class="mb-1">Category is <%= foundExpense.category %></p>
+        <p class="mb-1" style="text-decoration: underline;">Notes</p>
+        <p class="mb-3"><%= foundExpense.note %></p>
+        <a href="/expenses/<%= foundExpense._id %>/update" class="btn btn-primary mb-2">Edit</a>
+        <a href="/expenses/index" class="btn btn-primary mb-2">All Expenses</a>
+        <form action="/expenses/<%= foundExpense._id %>/delete?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+    
 </div>
 
 

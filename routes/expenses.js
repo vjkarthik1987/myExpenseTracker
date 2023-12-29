@@ -43,7 +43,7 @@ router.get('/home', async (req, res) => {
 router.get('/index', isLoggedIn, catchAsync(async (req, res) => {
     console.log(req.user);
     const currentUserId = req.user._id;
-    const expenses = await Expense.find({user: currentUserId}).exec();
+    const expenses = await Expense.find({user: currentUserId}).sort({date:-1}).exec();
     res.render('./expenses/index', {expenses: expenses})
 }))
 

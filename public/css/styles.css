@@ -8,6 +8,14 @@ body {
     background-color: #F0ECE5;
 }
 
+select {
+    border-radius: 0px;
+    margin: 15px 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid chocolate solid;;
+}
+
 /* Defined classes */
 .homeHero{
     height: 100vh;
@@ -64,6 +72,28 @@ body {
     flex-direction: column;
     justify-content:center;
 }
+
+.expenseHolder {
+    background-color: white;
+}
+
+.credit {
+    border: 2px solid red;
+}
+
+.account {
+    border: 2px solid green;
+}
+
+.cash {
+    border: 2px solid yellow;
+}
+
+.wallet {
+    border: 2px solid blue;
+}
+
+
 
 /* Bootstrap classes */
 .btn {

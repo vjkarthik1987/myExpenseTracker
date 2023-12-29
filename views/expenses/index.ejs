@@ -1,14 +1,22 @@
 <%- include('../partials/header') %>
 <%- include('../partials/navbar') %>
-
-<div class="container">
-    <%- include('../partials/flash') %>
+<div class="container mt-3">
     <h1>All Expenses</h1>
-    <ul>
-        <% for (let expense of expenses){ %>
-            <a href="/expenses/<%= expense._id %>"><li><%= expense.item %> : Rs.<%= expense.price %></li></a>
-        <% } %>
-    </ul>
+    <div class="row px-2">
+    <% for (let expense of expenses) { %>
+            <div class="col col-lg-3 col-md-6 col-sm-12 py-2 expenseHolder d-flex flex-column mb-3 me-2 <%= expense.mode.toLowerCase() %>">
+                <h5 class="col col-12"><%= expense.item %></h5>
+                <div class="d-flex">
+                    <p class="col col-6 mb-0"><b><i>Rs. <%= expense.price %></i></i></b></p>
+                    <p class="col col-6 mb-0"><%= expense.date.toLocaleDateString('en-GB') %></p>
+                </div>
+                <div class="d-flex">
+                    <p class="col col-6 mb-0"><%= expense.mode %></p>
+                    <a class="col col-6 mb-0" href="/expenses/<%= expense._id %>">Details</a>
+                </div> 
+            </div>
+        
+    <% } %>
 </div>
-
+</div>
 <%- include('../partials/footer') %>
