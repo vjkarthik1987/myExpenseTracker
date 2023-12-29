@@ -4,7 +4,7 @@
     <%- include('./partials/flash') %>
     <h1>Quick View</h1>
     <div class="row d-flex mb-3">
-        <h3 class="text-body-secondary mb-3">Date wise snapshot</h3>
+        <h3 class="text-body-secondary mb-3">Expense Snapshot</h3>
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>YTD</b></h5>
@@ -13,17 +13,17 @@
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>MTD</b></h5>
-            <p class="lead">Rs.<%= total %></p>
+            <p class="lead">Rs.<%= details.month %></p>
         </div>
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>Yesterday</b></h5>
-            <p class="lead">Rs.<%= total %></p>
+            <p class="lead">Rs.<%= details.yesterday %></p>
         </div>
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>Today</b></h5>
-            <p class="lead">Rs.<%= total %></p>
+            <p class="lead">Rs.<%= details.today %></p>
         </div>
         
     </div>
@@ -33,27 +33,27 @@
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>Credit</b></h5>
-            <p class="lead">Rs.<%= total %></p>
+            <p class="lead">Rs.<%= details.credit %></p>
         </div>
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>Account</b></h5>
-            <p class="lead">Rs.<%= total %></p>
+            <p class="lead">Rs.<%= details.account %></p>
         </div>
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>Cash</b></h5>
-            <p class="lead">Rs.<%= total %></p>
+            <p class="lead">Rs.<%= details.cash %></p>
         </div>
 
         <div class="col col-lg-2 col-md-4 col-sm-6 px-3 dashboard_box">
             <h5 class="text-body-primary"><b>Wallet</b></h5>
-            <p class="lead">Rs.<%= total %></p>
+            <p class="lead">Rs.<%= details.wallet %></p>
         </div>
     </div>
 
     <div class="row d-flex mb-3">
-        <h3 class="text-body-secondary">Category wise expense</h3>
+        <h3 class="text-body-secondary">Quick Analysis</h3>
     </div>
     
 </div>

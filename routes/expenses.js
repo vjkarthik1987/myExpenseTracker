@@ -8,8 +8,9 @@ const ExpressError    = require('../utils/ExpressError');
 const Joi             = require('joi');
 const expenseSchema   = require('../schemas');
 const flash           = require('connect-flash');
-const {isLoggedIn}      = require('../middleware');
-const sumField       = require('../utils/calculator');
+const {isLoggedIn}    = require('../middleware');
+const sumField        = require('../utils/calculator');
+const forDashboard    = require('../utils/forDashboard')
 
 const User = require('../models/User');
 const validateExpense = (req, res, next) => {
@@ -35,13 +36,8 @@ router.get('/home', async (req, res) => {
         account:0,
         wallet:0
     };
-    const dateToday = new Date();
-    for (let expense of expenses) {
-        if (expense.date.getFullYear() ==  dateToday.getFullYear()){
-            details.year = details.year + expense.price;
-        }
-    }
-    res.render('index', {total: (req.user) ?  sumField(expenses, 'price') : 0, details:details})
+    const editedDetails = forDashboard(expenses, details)
+    res.render('index', {total: (req.user) ?  sumField(expenses, 'price') : 0, details:editedDetails})
 })
 
 router.get('/index', isLoggedIn, catchAsync(async (req, res) => {
