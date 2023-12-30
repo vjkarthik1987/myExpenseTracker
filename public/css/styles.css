@@ -78,19 +78,19 @@ select {
 }
 
 .credit {
-    border: 1px solid red;
+    border: 2px solid red;
 }
 
 .account {
-    border: 1px solid green;
+    border: 2px solid green;
 }
 
 .cash {
-    border: 1px solid yellow;
+    border: 2px solid magenta;
 }
 
 .wallet {
-    border: 1px solid blue;
+    border: 2px solid blue;
 }
 
 

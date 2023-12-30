@@ -1,6 +1,6 @@
 module.exports =  [
     "General",
-    "Dress and Accessories",
+    "Dress etc.",
     "Health",
     "Misc",
     "Petrol",

@@ -27,6 +27,10 @@ router.post('/register', catchAsync(async (req, res, next) => {
 }))
 
 router.get('/login', (req, res) => {
+    if(req.user) {
+        req.flash('success', "You are already logged in!");
+        res.redirect('/expenses/home');
+    }
     res.render('./users/login')
 });
 

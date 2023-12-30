@@ -98,6 +98,28 @@ router.delete('/:id/delete', isLoggedIn, catchAsync(async (req, res) => {
     res.redirect('/expenses/index');
 }))
 
+router.get('/categories', isLoggedIn, catchAsync(async (req, res) => {
+    let categoryWiseExpenses_Year = {};
+    let categoryWiseExpenses_Month = {};
+    const dateToday = new Date();
+    Category.forEach(function(a, i) {
+        categoryWiseExpenses_Year[a] = 0;
+        categoryWiseExpenses_Month[a] = 0;
+    })
+    const expenses = await await Expense.find({user: req.user._id}).sort({date:-1}).exec();
+    for (let expense of expenses){
+        for (let individiualCategory of Category) {
+            if ((expense.category == individiualCategory) && (expense.date.getFullYear() == dateToday.getFullYear())) {
+                categoryWiseExpenses_Year[individiualCategory] = categoryWiseExpenses_Year[individiualCategory] + expense.price;
+                if(expense.date.getFullYear() == dateToday.getFullYear()) {
+                    categoryWiseExpenses_Month[individiualCategory] = categoryWiseExpenses_Month[individiualCategory] + expense.price;
+                }
+            }
+        }
+    }
+    res.render('./expenses/categories', {categoryWiseExpenses_Year: categoryWiseExpenses_Year, categoryWiseExpenses_Month: categoryWiseExpenses_Month});
+}))
+
 router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const {id} = req.params;
     //658714ae91d787de9fef39d8
@@ -106,6 +128,7 @@ router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
     console.log(user);
     res.render('./expenses/getExpense', {foundExpense: foundExpense, user: user});
 }))
+
 
 
 module.exports = router;
