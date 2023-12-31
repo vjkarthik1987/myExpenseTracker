@@ -6,6 +6,7 @@ module.exports =  [
     "Petrol",
     "Food",
     "Subscription",
+    "Utils",
     "Social",
     "Phone",
     "Travel",

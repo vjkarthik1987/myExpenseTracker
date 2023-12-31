@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<div class="row mt-3 px-1 mx-0">
+    <%- include('../partials/flash') %>
+    <h2>Category Wise Expense</h2>
+    <% for (const [key, value] of Object.entries(categoryWiseExpenses_Year)) { %>
+        <% const style = (categoryWiseExpenses_Year[key]) ? "credit" : "" %>
+        <div class="col col-lg-2 col-md-4 col-sm-6 col-5 expenseHolder mx-2 mb-2 pt-2 <%= style %>">
+            <p class="lead"><%= key %></p>
+            <div class="d-flex">
+                <p><b>YTD</b></p>
+                <p class="ms-2">Rs. <%= categoryWiseExpenses_Year[key] %></p>
+            </div>
+            <div class="d-flex">
+                <p><b>MTD</b></p>
+                <p class="ms-2">Rs. <%= categoryWiseExpenses_Month[key] %></p>
+            </div>
+        </div>
+    <% } %>
+
+</div>
+<%- include('../partials/footer') %>

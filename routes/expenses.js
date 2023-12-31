@@ -7,10 +7,11 @@ const Mode            = require('../models/Mode');
 const ExpressError    = require('../utils/ExpressError');
 const Joi             = require('joi');
 const expenseSchema   = require('../schemas');
-const flash           = require('connect-flash');
+    const flash           = require('connect-flash');
 const {isLoggedIn}    = require('../middleware');
 const sumField        = require('../utils/calculator');
 const forDashboard    = require('../utils/forDashboard')
+const calcValues      = require('../utils/yearlyAndMonthly');
 
 const User = require('../models/User');
 const validateExpense = (req, res, next) => {
@@ -99,25 +100,17 @@ router.delete('/:id/delete', isLoggedIn, catchAsync(async (req, res) => {
 }))
 
 router.get('/categories', isLoggedIn, catchAsync(async (req, res) => {
-    let categoryWiseExpenses_Year = {};
-    let categoryWiseExpenses_Month = {};
-    const dateToday = new Date();
-    Category.forEach(function(a, i) {
-        categoryWiseExpenses_Year[a] = 0;
-        categoryWiseExpenses_Month[a] = 0;
-    })
-    const expenses = await await Expense.find({user: req.user._id}).sort({date:-1}).exec();
-    for (let expense of expenses){
-        for (let individiualCategory of Category) {
-            if ((expense.category == individiualCategory) && (expense.date.getFullYear() == dateToday.getFullYear())) {
-                categoryWiseExpenses_Year[individiualCategory] = categoryWiseExpenses_Year[individiualCategory] + expense.price;
-                if(expense.date.getFullYear() == dateToday.getFullYear()) {
-                    categoryWiseExpenses_Month[individiualCategory] = categoryWiseExpenses_Month[individiualCategory] + expense.price;
-                }
-            }
-        }
-    }
-    res.render('./expenses/categories', {categoryWiseExpenses_Year: categoryWiseExpenses_Year, categoryWiseExpenses_Month: categoryWiseExpenses_Month});
+    const expenses =  await Expense.find({user: req.user._id}).sort({date:-1}).exec();
+    const calculatedValues = await calcValues(expenses, Category);
+    console.log(calculatedValues);
+    res.render('./expenses/categories', {categoryWiseExpenses_Year: calculatedValues[0], categoryWiseExpenses_Month: calculatedValues[1]});
+}));
+
+router.get('/modes', isLoggedIn, catchAsync(async (req, res) => {
+    const expenses =  await Expense.find({user: req.user._id}).sort({date:-1}).exec();
+    const calculatedValues = await calcValues(expenses, Mode);
+    console.log(calculatedValues);
+    res.render('./expenses/modes', {categoryWiseExpenses_Year: calculatedValues[0], categoryWiseExpenses_Month: calculatedValues[1]});
 }))
 
 router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
