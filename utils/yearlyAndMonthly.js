@@ -15,16 +15,7 @@ module.exports = async function yearlyAndMonthly(expenses, Arr){
     for (let expense of expenses){
         for (let individiualCategory of Arr) {
             const toCheck = (Arr == Category) ? 'category' : 'mode';
-            // console.log(expense[toCheck]);
-            // console.log(individiualCategory);
-            // console.log(expense['category'] == individiualCategory)
-            // console.log(expense.date.getFullYear());
-            // console.log(dateToday.getFullYear());
-            // console.log(expense.date.getFullYear() == dateToday.getFullYear());
-            // console.log(expense.price)
-            // console.log('----------------');
             if ((expense[toCheck] == individiualCategory) && (expense.date.getFullYear() == dateToday.getFullYear())) {
-                console.log(expense.price);
                 obj_yearly[individiualCategory] = obj_yearly[individiualCategory] + expense.price;
                 if(expense.date.getFullYear() == dateToday.getFullYear()) {
                     obj_monthly[individiualCategory] = obj_monthly[individiualCategory] + expense.price;

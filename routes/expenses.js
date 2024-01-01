@@ -35,14 +35,15 @@ router.get('/home', async (req, res) => {
         credit:0,
         cash:0,
         account:0,
-        wallet:0
+        wallet:0,
+        yearlyAverage:0,
+        monthlyAverage:0
     };
     const editedDetails = forDashboard(expenses, details)
     res.render('index', {total: (req.user) ?  sumField(expenses, 'price') : 0, details:editedDetails})
 })
 
 router.get('/index', isLoggedIn, catchAsync(async (req, res) => {
-    console.log(req.user);
     const currentUserId = req.user._id;
     const expenses = await Expense.find({user: currentUserId}).sort({date:-1}).exec();
     res.render('./expenses/index', {expenses: expenses})
@@ -102,14 +103,12 @@ router.delete('/:id/delete', isLoggedIn, catchAsync(async (req, res) => {
 router.get('/categories', isLoggedIn, catchAsync(async (req, res) => {
     const expenses =  await Expense.find({user: req.user._id}).sort({date:-1}).exec();
     const calculatedValues = await calcValues(expenses, Category);
-    console.log(calculatedValues);
     res.render('./expenses/categories', {categoryWiseExpenses_Year: calculatedValues[0], categoryWiseExpenses_Month: calculatedValues[1]});
 }));
 
 router.get('/modes', isLoggedIn, catchAsync(async (req, res) => {
     const expenses =  await Expense.find({user: req.user._id}).sort({date:-1}).exec();
     const calculatedValues = await calcValues(expenses, Mode);
-    console.log(calculatedValues);
     res.render('./expenses/modes', {categoryWiseExpenses_Year: calculatedValues[0], categoryWiseExpenses_Month: calculatedValues[1]});
 }))
 
@@ -118,7 +117,6 @@ router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
     //658714ae91d787de9fef39d8
     const foundExpense = await Expense.findById(id);
     const user = await User.findById(foundExpense.user.toString());
-    console.log(user);
     res.render('./expenses/getExpense', {foundExpense: foundExpense, user: user});
 }))
 

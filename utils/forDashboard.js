@@ -6,7 +6,9 @@ function forDashboard(expenses, details){
     const editedDetails = details;
     const modes = require('../models/Mode');
     const dateToday = new Date();
-    const dateYesterday = new Date(dateToday - 1000*60*60*24) 
+    const dateYesterday = new Date(dateToday - 1000*60*60*24);
+    const daysInYear = Math.floor((dateToday - new Date(dateToday.getFullYear(),'0', '1' ))/(1000*60*60*24) + 1);
+    const daysInMonth = Math.floor((dateToday - new Date(dateToday.getFullYear(), dateToday.getMonth(), '1'))/(1000*60*60*24) + 1);
     
     for (let expense of expenses) {
         //Checking for same year and same month
@@ -28,10 +30,12 @@ function forDashboard(expenses, details){
 
         //Checking for different modes
         for (let individialMode of modes) {
-            if (expense.mode == individialMode) {
+            if ((expense.mode == individialMode) && expense.date.getFullYear() == dateToday.getFullYear()) {
                 editedDetails[individialMode.toLowerCase()] = editedDetails[individialMode.toLowerCase()] + expense.price;
             }
-        }  
+        }
+        details.yearlyAverage = details.year/daysInYear;
+        details.monthlyAverage = details.month/daysInMonth;
     }
     return editedDetails;
 }
